@@ -73,7 +73,7 @@ function Home() {
           <Col lg={{ span: 7, order: 1 }} xs={{ order: 1 }}>
             {<UserInfo isLoading={authStatus !== "loaded"} {...authData} />}
           </Col>
-          <Col lg={{ span: 10, order: 2 }} xs={{ order: 3 }}>
+          {/* <Col lg={{ span: 10, order: 2 }} xs={{ order: 3 }}>
             {authStatus === "loaded" ? (
               <PostForm handleSubmit={handleSubmit} />
             ) : (
@@ -95,7 +95,7 @@ function Home() {
               : Array(5)
                   .fill(0)
                   .map((_, index) => <PostLoading key={index} />)}
-          </Col>
+          </Col> */}
           <Col lg={{ span: 7, order: 3 }} xs={{ order: 2 }}>
             {authStatus === "loaded" ? (
               <Advertisment />
