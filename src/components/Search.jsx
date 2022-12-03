@@ -65,7 +65,7 @@ function Search() {
               <div className=" px-2 d-flex align-items-center py-2 ">
                 <img
                   style={{
-                    background: `url(http://localhost:3001/assets/${user.picturePath})`,
+                    background: `url(${process.env.REACT_APP_API_URL}/assets/${user.picturePath})`,
                   }}
                   alt=""
                   className="me-2 rounded-circle user__avatar"

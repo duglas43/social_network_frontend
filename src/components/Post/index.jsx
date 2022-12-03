@@ -37,7 +37,7 @@ function Post({
           <div className="d-flex text-decoration-none">
             <img
               style={{
-                background: `url(http://localhost:3001/assets/${userPicturePath})`,
+                background: `url(${process.env.REACT_APP_API_URL}/assets/${userPicturePath})`,
                 backgroundPosition: "center center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
@@ -78,7 +78,7 @@ function Post({
         <p className="text-muted mb-1">{description}</p>
         {picturePath && (
           <img
-            src={`http://localhost:3001/assets/${picturePath}`}
+            src={`${process.env.REACT_APP_API_URL}/assets/${picturePath}`}
             alt="postImg"
             className="mb-2 w-100 rounded-4"
           />

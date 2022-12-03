@@ -28,7 +28,7 @@ function UserInfo({
           <div className="d-flex">
             <img
               style={{
-                background: `url(http://localhost:3001/assets/${picturePath})`,
+                background: `url(${process.env.REACT_APP_API_URL}/assets/${picturePath})`,
               }}
               alt=""
               className="me-2 rounded-circle user__avatar"

@@ -25,7 +25,7 @@ function FriendsBlock({
                   >
                     <img
                       style={{
-                        background: `url(http://localhost:3001/assets/${picturePath})`,
+                        background: `url(${process.env.REACT_APP_API_URL}/assets/${picturePath})`,
                         backgroundPosition: "center center",
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
