@@ -80,7 +80,7 @@ function Home() {
               <PostFormLoading />
             )}
             {postsStatus === "loaded" && authStatus === "loaded"
-              ? posts.map((post) => {
+              ? posts?.map((post) => {
                   return (
                     <Post
                       myId={authData?._id}

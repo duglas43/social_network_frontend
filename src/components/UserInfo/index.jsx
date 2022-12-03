@@ -50,7 +50,7 @@ function UserInfo({
                   `${firstName} ${lastName}`
                 )}
               </h5>
-              <p className="text-muted m-0">
+              <div className="text-muted m-0">
                 {isLoading ? (
                   <div className="d-flex">
                     <Skeleton style={{ width: "15px" }} count={1} />
@@ -63,7 +63,7 @@ function UserInfo({
                     "друзей",
                   ])}`
                 )}
-              </p>
+              </div>
             </div>
           </div>
           <div className="d-flex align-items-center">
