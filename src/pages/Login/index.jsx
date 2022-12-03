@@ -24,7 +24,6 @@ function Login() {
   const authStatus = useSelector(selectAuthStatus);
 
   const handleSubmit = async (values) => {
-    console.log(values);
     const data = await dispatch(fetchAuth(values));
     if (!!!data.payload) {
       setIsLoginSuccess(false);
