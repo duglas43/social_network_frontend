@@ -1,9 +1,9 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 import Dropzone from "react-dropzone";
-import axios from "../axios";
+import axios from "../../axios";
 import { useDispatch } from "react-redux";
-import { fetchPosts } from "../redux/slices/post";
+import { fetchPosts } from "../../redux/slices/post";
 function PostForm({ handleSubmit }) {
   const dispatch = useDispatch();
   const inputRef = React.useRef(null);

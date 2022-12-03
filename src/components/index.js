@@ -3,5 +3,8 @@ export { default as UserInfo } from "./UserInfo";
 export { default as Post } from "./Post";
 export { default as Advertisment } from "./Advertisment";
 export { default as FriendsBlock } from "./FriendsBlock";
+export { default as LoadingFriendsBlock } from "./FriendsBlock/LoadingFriendsBlock";
 export { default as PostForm } from "./PostForm";
+export { default as PostFormLoading } from "./PostForm/PostFormLoading";
+export { default as PostLoading } from "./Post/PostLoading";
 export { default as Search } from "./Search";

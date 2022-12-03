@@ -1,4 +1,6 @@
 import React from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { Navbar, Nav, Container, Form, NavDropdown } from "react-bootstrap";
 import Search from "../Search";
 import { useSelector, useDispatch } from "react-redux";
@@ -42,9 +44,16 @@ function Header() {
               <Nav>
                 <NavDropdown
                   title={
-                    userStatus === "loaded"
-                      ? `${userData.firstName} ${userData.lastName}`
-                      : "Loading..."
+                    userStatus === "loaded" ? (
+                      `${userData.firstName} ${userData.lastName}`
+                    ) : (
+                      <SkeletonTheme inline>
+                        <Skeleton
+                          style={{ width: "100px" }}
+                          className="rounded-2 me-2"
+                        />
+                      </SkeletonTheme>
+                    )
                   }
                   id="navbarScrollingDropdown"
                   className="me-md-5 grey-200 rounded-3 text-center"

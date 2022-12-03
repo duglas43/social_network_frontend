@@ -1,7 +1,7 @@
 import React from "react";
 function Advertisment() {
   return (
-    <div className="sponsored-block w-100 bg-white rounded-4 p-4 mt-4 mt-lg-0 d-none d-lg-block">
+    <div className="sponsored-block w-100 bg-white rounded-4 p-4 mb-4 d-none d-lg-block">
       <div className="d-flex justify-content-between ">
         <h5 className="my-0">Реклама</h5>
         <p className="text-muted my-0"></p>

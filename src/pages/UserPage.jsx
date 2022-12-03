@@ -16,7 +16,14 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import axios from "../axios";
-import { UserInfo, Post, Advertisment, FriendsBlock } from "../components";
+import {
+  UserInfo,
+  Post,
+  Advertisment,
+  FriendsBlock,
+  PostLoading,
+  LoadingFriendsBlock,
+} from "../components";
 
 function UserPage() {
   const dispatch = useDispatch();
@@ -56,40 +63,54 @@ function UserPage() {
       <Container>
         <Row>
           <Col lg={{ span: 7, order: 1 }} xs={{ order: 1 }}>
-            {userStatus === "loaded" && authStatus === "loaded" && (
+            {
               <UserInfo
                 isUserPage
-                myFriends={authData.friends}
+                myFriends={
+                  authStatus === "loaded" && userStatus === "loaded"
+                    ? authData.friends
+                    : null
+                }
+                isLoading={authStatus !== "loaded" || userStatus !== "loaded"}
                 {...userData}
                 handleFriendPlusMinusClick={handleFriendPlusMinusClick}
               />
-            )}
+            }
           </Col>
           <Col lg={{ span: 10, order: 2 }} xs={{ order: 3 }}>
             {postsStatus === "loaded" &&
-              authStatus === "loaded" &&
-              userStatus === "loaded" &&
-              posts.map((post) => {
-                return (
-                  <Post
-                    myId={authData?._id}
-                    key={post._id}
-                    {...post}
-                    isUserPage
-                    myFriends={authData.friends}
-                    handleLikeClick={handleLikeClick}
-                    handleFriendPlusMinusClick={handleFriendPlusMinusClick}
-                  />
-                );
-              })}
+            authStatus === "loaded" &&
+            userStatus === "loaded"
+              ? posts.map((post) => {
+                  return (
+                    <Post
+                      myId={authData?._id}
+                      key={post._id}
+                      {...post}
+                      isUserPage
+                      myFriends={authData.friends}
+                      handleLikeClick={handleLikeClick}
+                      handleFriendPlusMinusClick={handleFriendPlusMinusClick}
+                    />
+                  );
+                })
+              : Array(5)
+                  .fill(0)
+                  .map((_, index) => <PostLoading isUserPage key={index} />)}
           </Col>
           <Col lg={{ span: 7, order: 3 }} xs={{ order: 2 }}>
-            <Advertisment />
-            {userStatus === "loaded" && (
+            {authStatus === "loaded" ? (
+              <Advertisment />
+            ) : (
+              <PostLoading isUserPage />
+            )}
+            {userStatus === "loaded" ? (
               <FriendsBlock
                 friendsArray={userData.expandedFriends}
                 isUserPage={true}
               />
+            ) : (
+              <LoadingFriendsBlock />
             )}
           </Col>
         </Row>

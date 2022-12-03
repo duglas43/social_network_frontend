@@ -15,6 +15,9 @@ import {
   Advertisment,
   FriendsBlock,
   PostForm,
+  PostFormLoading,
+  PostLoading,
+  LoadingFriendsBlock,
 } from "../../components";
 function Home() {
   const dispatch = useDispatch();
@@ -68,32 +71,44 @@ function Home() {
       <Container>
         <Row>
           <Col lg={{ span: 7, order: 1 }} xs={{ order: 1 }}>
-            {authStatus === "loaded" && <UserInfo {...authData} />}
+            {<UserInfo isLoading={authStatus !== "loaded"} {...authData} />}
           </Col>
           <Col lg={{ span: 10, order: 2 }} xs={{ order: 3 }}>
-            <PostForm handleSubmit={handleSubmit} />
-            {postsStatus === "loaded" &&
-              authStatus === "loaded" &&
-              posts.map((post) => {
-                return (
-                  <Post
-                    myId={authData?._id}
-                    key={post._id}
-                    {...post}
-                    myFriends={authData.friends}
-                    handleLikeClick={handleLikeClick}
-                    handleFriendPlusMinusClick={handleFriendPlusMinusClick}
-                  />
-                );
-              })}
+            {authStatus === "loaded" ? (
+              <PostForm handleSubmit={handleSubmit} />
+            ) : (
+              <PostFormLoading />
+            )}
+            {postsStatus === "loaded" && authStatus === "loaded"
+              ? posts.map((post) => {
+                  return (
+                    <Post
+                      myId={authData?._id}
+                      key={post._id}
+                      {...post}
+                      myFriends={authData.friends}
+                      handleLikeClick={handleLikeClick}
+                      handleFriendPlusMinusClick={handleFriendPlusMinusClick}
+                    />
+                  );
+                })
+              : Array(5)
+                  .fill(0)
+                  .map((_, index) => <PostLoading key={index} />)}
           </Col>
           <Col lg={{ span: 7, order: 3 }} xs={{ order: 2 }}>
-            <Advertisment />
-            {authStatus === "loaded" && authData.expandedFriends?.length && (
+            {authStatus === "loaded" ? (
+              <Advertisment />
+            ) : (
+              <PostLoading isUserPage />
+            )}
+            {authStatus === "loaded" && !!authData.expandedFriends?.length ? (
               <FriendsBlock
                 friendsArray={authData.expandedFriends}
                 handleFriendPlusMinusClick={handleFriendPlusMinusClick}
               />
+            ) : (
+              <LoadingFriendsBlock />
             )}
           </Col>
         </Row>
